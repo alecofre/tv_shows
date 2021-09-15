@@ -1,0 +1,48 @@
+{% extends "tv_shows_app/base.html"%}
+
+{% block title %}Create{% endblock %}
+
+{% block content %}
+
+{% include "tv_shows_app/navbar.html" %}
+
+
+<div class="container">
+     <h1>Add a New Show</h1>
+     <form action="/shows/new_show" method="POST">
+          {% csrf_token %}
+
+          <div class="row">
+               <label for="title">Title</label>
+          </div>
+          <div class="row">
+               <input class="col-8" type="text" name="title" id="title" required>
+          </div>
+          <div class="row">
+               <label class="col-4" for="network">Network</label>
+               <div class="col col-1"></div>
+               <label class="col-3" for="release_date">Release Date</label>
+          </div>
+          <div class="row">
+               <input class="col-4" type="text" name="network" id="network">
+               <div class="col col-1"></div>
+               <input class="col-3" type="date" name="release_date" id="release_date">
+          </div>
+
+          <div class="row">
+               <label class="col-4" for="description">Description</label>
+          </div>
+
+          <div class="row">
+               <textarea class="col-8" name="description" id="description" rows="5"></textarea>
+          </div>
+          
+          <div class="row mt-3 justify-content-center">
+               <input class="col-2" type="submit" value="Create">
+               <div class="col-3"></div>
+          </div>
+
+     </form>
+
+ </div>
+{% endblock %}

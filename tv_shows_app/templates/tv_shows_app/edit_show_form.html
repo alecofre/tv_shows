@@ -1,0 +1,49 @@
+{% extends "tv_shows_app/base.html"%}
+
+{% block title %}Update{% endblock %}
+
+{% block content %}
+
+{% include "tv_shows_app/navbar.html" %}
+
+
+<div class="container">
+     <h1>Edit Show {{show.id}} </h1>
+     <form action="/shows/{{show.id}}/edit_show" method="POST">
+          {% csrf_token %}
+
+          <div class="row">
+               <label for="title">Title</label>
+          </div>
+          <div class="row">
+               <input class="col-8" type="text" name="title" id="title" value=" {{show.title}}" required>
+          </div>
+          <div class="row">
+               <label class="col-4" for="network">Network</label>
+               <div class="col col-1"></div>
+               <label class="col-3" for="release_date">Release Date</label>
+          </div>
+          <div class="row">
+               <input class="col-4" type="text" name="network" id="network" value=" {{show.network}}">
+               <div class="col col-1"></div>
+               <input class="col-3" type="date" name="release_date" id="release_date" value="{{show.release_date|date:'Y-m-d'}}">
+          </div>
+
+          <div class="row">
+               <label class="col-4" for="description">Description</label>
+          </div>
+
+          <div class="row">
+               <textarea class="col-8" name="description" id="description" rows="5">{{show.description}}</textarea>
+          </div>
+          
+          <div class="row mt-3 justify-content-center">
+               <input type="hidden" name="show_id" value="{{show.id}}">
+               <input class="col-2" type="submit" value="Update">
+               <div class="col-3"></div>
+          </div>
+     </form>
+     <a class="text-center" href="/shows">Go to Shows</a>
+
+ </div>
+{% endblock %}
